@@ -35,7 +35,7 @@ module adder_logic_unit #(
     assign c_out = f[1] & c[N];                         //final carry-out
     assign over  = f[1] & (c[N] ^ c[N-1]);              //signed overflow: carry into MSB differs from carry-out
 
-    assign slt     =  f[1] & f[0]  & (over ^ s[N-1]);   //SLT  output (signed   a < b). sign bit is wrong when overflow, so XOR corrects
+    assign slt     =  f[1] & f[0]  & (over ^ s[N-1]);   // SLT output (signed   a < b). sign bit is wrong when overflow, so XOR corrects
     assign sltu    =  f[1] & f[0]  & ~c[N];             //SLTU output (unsigned a < b). when subtracting, carry-out = 0 means borrow happened, so a < b
 
     //logic results come from adder with its carry-in forced to 0 and b not inverted (f == 00)
