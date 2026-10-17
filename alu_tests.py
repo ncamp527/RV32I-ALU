@@ -50,3 +50,5 @@ async def add_4bit_test(dut):
                 f"expected: {overfl}, actual: {int(dut.overflow.value)}"
             )
 # end add_4bit_test
+
+# TODO: Add top-nibble, edge, and randomized tests for other ops
