@@ -12,8 +12,9 @@ module shifter_unit #(
     assign fill =  right & arith & a[N-1];      //determine filling by 0 or 1
 
     //reverse if right shift
-    always_comb for (int i = 0; i < N; i++)
-        x[0][i] = right ? a[N-1-i] : a[i];
+    for (genvar i = 0; i < N; i++) begin : reversal
+        assign x[0][i] = right ? a[N-1-i] : a[i];
+    end
 
     //shift
     for (genvar i = 0; i < $clog2(N); i++) begin : shifter
