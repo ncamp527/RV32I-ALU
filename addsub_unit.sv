@@ -8,13 +8,12 @@ module addsub_unit #(
     input  logic         sub,                           //inverter for subtraction
     output logic [N-1:0] s,                             //sum
     output logic         c_out,                         //carry-out of MSB
-    output logic         over,                          //signed overflow
-    output logic   [N:0] c                              //carry chain
+    output logic         over                           //signed overflow
 );
-
+    logic   [N:0] c;        //carry chain
     logic [N-1:0] b_inv;
 
-    //N instances of adder; takes c[i] as carry-in and ouputs c[i+1] as carry-out
+    //N instances of adder; takes c[i] as carry-in and outputs c[i+1] as carry-out
     full_adder_slice U[N-1:0] (
         .a(a[N-1:0]),
         .b(b_inv[N-1:0]),
@@ -27,5 +26,4 @@ module addsub_unit #(
     assign c[0]  = sub;                         //initial carry-in
     assign c_out = c[N];                        //final carry-out
     assign over  = c[N] ^ c[N-1];               //signed overflow: carry into MSB differs from carry-out
-
 endmodule
